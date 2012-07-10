@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Date: 7/9/12
  */
 public class Main {
-  public static final String DICTIONARY_PATH = "data/SmallMueller7GPL.koi";
+  public static final String DICTIONARY_PATH = "data/Mueller7GPL.koi";
 
   public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
     final MuellerDictionaryParser parser = new MuellerDictionaryParser(DICTIONARY_PATH);
@@ -24,7 +24,6 @@ public class Main {
           break;
         }
         DbHelper.addDictionaryItem(di);
-        System.out.println(di.word + "  [" + di.getTranscription() + "] " + di.getTranslations());
 
       }
     } finally {

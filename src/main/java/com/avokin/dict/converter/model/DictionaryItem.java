@@ -5,11 +5,11 @@ package com.avokin.dict.converter.model;
  * Date: 7/9/12
  */
 public class DictionaryItem {
-    public String word;
+    private String word;
 
-    public String transcription;
+    private String transcription;
 
-    public String translations;
+    private String translations;
 
     public DictionaryItem(String word, String transcription, String translations) {
         this.word = word;
