@@ -80,6 +80,14 @@ public class MuellerDictionaryParserTest {
         di = parser.getNextItem();
         Assert.assertEquals("judge", di.getWord());
         Assert.assertEquals("ˈʤʌʤ", di.getTranscription());
+
+        di = parser.getNextItem();
+        Assert.assertEquals("aerial", di.getWord());
+        Assert.assertEquals("ˈeəriəl", di.getTranscription());
+
+        di = parser.getNextItem();
+        Assert.assertEquals("acknowledge", di.getWord());
+        Assert.assertEquals("əkˈnɔliʤ", di.getTranscription());
     }
 
     @Test
@@ -88,5 +96,9 @@ public class MuellerDictionaryParserTest {
 
         DictionaryItem di = parser.getNextItem();
         Assert.assertEquals("her", di.getWord());
+
+        di = parser.getNextItem();
+        Assert.assertEquals("amn't", di.getWord());
+        Assert.assertEquals("_разг. = am not", di.getTranslations());
     }
 }
