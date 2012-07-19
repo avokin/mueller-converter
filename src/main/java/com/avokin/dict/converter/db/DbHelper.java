@@ -21,13 +21,15 @@ public class DbHelper {
     connection = DriverManager.getConnection("jdbc:sqlite:sample.db", config.toProperties());
 
     Statement statement = connection.createStatement();
+    statement.executeUpdate("PRAGMA case_sensitive_like = false");
+
     statement.executeUpdate("drop table if exists words");
     statement.executeUpdate("drop table if exists android_metadata");
 
-    statement.executeUpdate("create table android_metadata(locale string)");
+    statement.executeUpdate("create table android_metadata(locale text)");
     statement.executeUpdate("insert into android_metadata(locale) values('en_US')");
 
-    statement.executeUpdate("create table words(word string primary key, id integer, transcription string, translations string)");
+    statement.executeUpdate("create table words(word text primary key, id integer unique, transcription string, translations string)");
   }
 
   public static void closeDb() throws SQLException {
