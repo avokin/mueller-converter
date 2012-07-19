@@ -27,7 +27,7 @@ public class DbHelper {
     statement.executeUpdate("create table android_metadata(locale string)");
     statement.executeUpdate("insert into android_metadata(locale) values('en_US')");
 
-    statement.executeUpdate("create table words(word string, transcription string, translations string)");
+    statement.executeUpdate("create table words(word string primary key, id integer, transcription string, translations string)");
   }
 
   public static void closeDb() throws SQLException {
@@ -36,11 +36,11 @@ public class DbHelper {
     }
   }
 
-  public static void addDictionaryItem(DictionaryItem dictionaryItem) throws SQLException {
+  public static void addDictionaryItem(DictionaryItem dictionaryItem, int id) throws SQLException {
     Statement insertStatement = connection.createStatement();
     String word = dictionaryItem.getWord().replace("\'", "''");
     String transcription = dictionaryItem.getTranscription().replace("\'", "''");
     String translations = dictionaryItem.getTranslations().replace("\'", "''");
-    insertStatement.executeUpdate(String.format("insert into words(word, transcription, translations) values('%s', '%s', '%s')", word, transcription, translations));
+    insertStatement.executeUpdate(String.format("insert into words(id, word, transcription, translations) values(%s, '%s', '%s', '%s')", id, word, transcription, translations));
   }
 }

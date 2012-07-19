@@ -18,13 +18,19 @@ public class Main {
     final MuellerDictionaryParser parser = new MuellerDictionaryParser(DICTIONARY_PATH);
     try {
       DbHelper.createDb();
+      int id = 1;
       while (parser.ready()) {
         DictionaryItem di = parser.getNextItem();
         if (di == null) {
           break;
         }
-        DbHelper.addDictionaryItem(di);
 
+        try {
+          DbHelper.addDictionaryItem(di, id);
+        } catch (SQLException e) {
+          e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        id++;
       }
     } finally {
       DbHelper.closeDb();
